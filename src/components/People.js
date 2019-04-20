@@ -20,14 +20,19 @@ const People = () => {
         const userId = urlArr[urlArr.length - 2];
         return (
           <li key={person.url}>
-            {person.name}
-            <button onClick={handleGetUser(userId, true)}>
-              Get Slow
-            </button>
+            <span>
+              {person.name}
+            </span>
 
-            <button onClick={handleGetUser(userId)}>
-              Get Fast
-            </button>
+            <span>
+              <button onClick={handleGetUser(userId, true)}>
+                Get Slow
+              </button>
+
+              <button onClick={handleGetUser(userId)}>
+                Get Fast
+              </button>
+            </span>
           </li>
         )
       })}

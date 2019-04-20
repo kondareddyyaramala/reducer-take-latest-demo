@@ -6,6 +6,9 @@ import { actions } from './actions';
 
 // Local Variables
 const initialState = {
+  latestResponse: {
+    data: null,
+  },
   people: {
     data: [],
   },

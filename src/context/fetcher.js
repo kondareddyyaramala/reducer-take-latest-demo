@@ -19,8 +19,12 @@ class Fetcher {
       const response = await fetch(`https://swapi.co/api/people/${userId}`);
       const data = await response.json();
 
-      console.log('RESPONSE', data.name);
-
+      context.dispatch({
+        payload: {
+          data,
+        },
+        type: ACTION_TYPES.PERSON_GET_SUCCESS_LATEST
+      });
       if (requestId === this.getUserId) {
         context.dispatch({
           payload: {
