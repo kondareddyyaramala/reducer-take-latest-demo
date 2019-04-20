@@ -18,7 +18,21 @@ const initialState = {
 };
 export const Context = React.createContext(initialState);
 
-const reducer = (state = initialState, action) => actions[action.type](state, action);
+const isDev = process.env.NODE_ENV === 'development';
+const withDevTools = isDev && !!window && window.__REDUX_DEVTOOLS_EXTENSION__;
+const devTools = withDevTools && window.__REDUX_DEVTOOLS_EXTENSION__.connect();
+
+if (devTools) {
+  devTools.send('@@INIT', initialState)
+}
+
+const reducer = (state = initialState, action) => {
+  const newState = actions[action.type](state, action)
+  if (devTools) {
+    devTools.send(action.type, newState);
+  }
+  return newState;
+};
 
 // Component Definition
 const AppContext = (props) => {
